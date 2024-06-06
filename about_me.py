@@ -9,15 +9,33 @@ def main():
     # Step 2: Create a complex data structure that holds information about me
     about_me = {
         # TODO: Put full name into data structure
+        'Student name' : [
+        'Pankaj Kesri', 
+        'Pankaj'
+        ],
         # TODO: Put student ID into data structure
+        'Student ID' : '10284560',
         # TODO: Put list of 3 pizza toppings into data structure
+        'Toppings' : [
+            'tomatoes',
+            'Onions',
+            'Green Pepper'
+        ],
         'movies': [
             # TODO: Change this to a movie you like
             {
-                'title': 'The empire strikes back',
+                'title': 'Iron-man 1',
                 'genre': 'sci-fi'
             },
             # TODO: Add one more movie
+            {
+                'title': 'Iron-man 2',
+                'genre': 'sci-fi'
+            },
+            {
+                'title': 'Thor',
+                'genre': 'sci-fi'
+            }
         ]
     }
 
