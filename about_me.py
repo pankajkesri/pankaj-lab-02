@@ -8,51 +8,43 @@ Usage:
 def main():
     # Step 2: Create a complex data structure that holds information about me
     about_me = {
-        # TODO: Put full name into data structure
-        'Student name' : [
-        'Pankaj Kesri', 
-        'Pankaj'
-        ],
-        # TODO: Put student ID into data structure
-        'Student ID' : '10284560',
-        # TODO: Put list of 3 pizza toppings into data structure
+        'Student_name' : 'Pankaj Kesri',
+        'Student_ID' : '10284560',
         'Toppings' : [
-            'tomatoes',
-            'Onions',
-            'Green Pepper'
+            'TOMATOES',
+            'ONIONS',
+            'GREEN PEPPERS'
         ],
         'movies': [
-            # TODO: Change this to a movie you like
             {
-                'title': 'Iron-man 1',
+                'title': 'Ghost Rider',
                 'genre': 'sci-fi'
             },
-            # TODO: Add one more movie
             {
                 'title': 'Iron-man 2',
-                'genre': 'sci-fi'
+                'genre': 'adventure'
             },
             {
-                'title': 'Thor',
-                'genre': 'sci-fi'
+                'title': 'Venom',
+                'genre': 'Action'
             }
         ]
     }
 
     # Step 3: Print student name and ID
     print_student_name_and_id(about_me)
-
+    
     # Step 4: Print a bullet list of pizza toppings
     print_pizza_toppings(about_me)
 
     # Step 5: Add pizza toppings to the data structure
     # TODO: Change to pizza toppings you like
-    add_pizza_toppings(about_me, ['soylent green', 'racht'])
+    add_pizza_toppings(about_me, ['mushroom', 'tofu'])
     print_pizza_toppings(about_me)
 
     # Step 6: Add another movie to the data structure
     # TODO: Change to a movie you like
-    add_movie(about_me, 'the lord of the rings', 'fantasy')
+    add_movie(about_me, 'Hulk', 'Action')
 
     # Step 7: Print a comma-separated list of movie genres
     print_movie_genres(about_me)
@@ -66,10 +58,9 @@ def print_student_name_and_id(my_info):
     Args:
         my_info (dict): Data structure containing information about me
     """
-    # TODO: Complete function body per Step 3
-    # Print sentence containing name
-    # Print sentence containing student ID
-    print()
+    Student_name = my_info["Student_name"]
+    Student_first_name = Student_name.split()[0]
+    print(f' My name is {Student_name}, but you can call me Sir {Student_first_name}.\n My student ID is {my_info["Student_ID"]}.\n')
 
 def print_pizza_toppings(my_info):
     """Prints a bullet list of favourite pizza toppings
@@ -77,9 +68,9 @@ def print_pizza_toppings(my_info):
     Args:
         my_info (dict): Data structure containing information about me
     """
-    # TODO: Complete function body per Step 4
-    # Print header "My favourite pizza toppings are:"
-    # Print bullet list of favourite pizza toppings
+    print(" My favourite pizza toppings are:")
+    for topping in my_info["Toppings"]:
+        print(f'- {topping}')
     print()
 
 def add_pizza_toppings(my_info, toppings):
@@ -89,11 +80,8 @@ def add_pizza_toppings(my_info, toppings):
         my_info (dict): Data structure containing information about me
         toppings (list): List of pizza toppings
     """
-    # TODO: Complete function body per Step 5
-    # Append new pizza toppings to end of list 
-    # Convert all pizza toppings to lowercase
-    # Sort toppings list alphabetically
-    return
+    my_info['Toppings'].extend(toppings)
+    my_info['Toppings'] = sorted({topping.lower() for topping in my_info["Toppings"]}, key=str.lower)
 
 def add_movie(my_info, title, genre):
     """Adds a movie to the list of favourites
@@ -103,9 +91,8 @@ def add_movie(my_info, title, genre):
         title (str): Movie title
         genre (str): Movie genre
     """
-    # TODO: Complete function body per Step 6
-    # Create dictionary for new movie and add to movie list
-    return
+    new_movie = {'title': title, 'genre': genre}
+    my_info['movies'].append(new_movie)
 
 def print_movie_genres(my_info):
     """Prints a sentence listing all favourite movie genres
@@ -113,8 +100,13 @@ def print_movie_genres(my_info):
     Args:
         my_info (dict): Data structure containing information about me
     """
-    # TODO: Complete function body per Step 7
-    print()
+    genres = [movie["genre"] for movie in my_info["movies"]]
+    genres = [genre for genre in genres if genre]
+    if len(genres) > 1:
+        genres_result = ', '.join(genres[:-1]) + ' and ' + genres[-1]
+    else:
+        genres_result = genres[0] if genres else 'no genres'
+    print(" I like to watch " + genres_result + " movies.\n")
 
 def print_movie_titles(movie_list):
     """Prints a sentence listing all favourite movie titles
@@ -122,8 +114,12 @@ def print_movie_titles(movie_list):
     Args:
         movie_list (list): List of favourite movies
     """
-    # TODO: Complete function body per Step 8
-    print()
+    titles = [movie["title"].title() for movie in movie_list]
+    if len(titles) > 1:
+        titles_result = ', '.join(titles[:-1]) + ' and ' + titles[-1]
+    else:
+        titles_result = titles[0]
+    print(f"Some of my favourite movies are {titles_result}!\n")
 
 if __name__ == '__main__':
     main()
